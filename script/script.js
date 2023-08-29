@@ -7,21 +7,21 @@
 
 // gettig value from input field by click handler
 
-const searchItem = () => {
+const searchItem = (showAll) => {
   loaderFunction(true);
   const phoneBrandText = document.getElementById("search-value").value;
   const phoneBrand = phoneBrandText.toLowerCase();
 
   // passing this value in fetch api function
-  loadPhoneDataFromApi(phoneBrand);
+  loadPhoneDataFromApi(phoneBrand, showAll);
 
   // reseting input field
-  document.getElementById("search-value").value = "";
+  // document.getElementById("search-value").value = "";
 };
 
 // Fetch api
 
-const loadPhoneDataFromApi = async (phoneBrandName) => {
+const loadPhoneDataFromApi = async (phoneBrandName, showAll) => {
   const phoneCardContainer = document.getElementById("phone-card-contaner");
   phoneCardContainer.innerHTML = "";
 
@@ -33,7 +33,7 @@ const loadPhoneDataFromApi = async (phoneBrandName) => {
   const json = await response.json();
 
   //   sending data to another function for proces
-  displayPhones(json.data);
+  displayPhones(json.data, showAll);
 };
 
 // get the parent Container for displaying data
@@ -41,16 +41,23 @@ const phoneCardContainer = document.getElementById("phone-card-contaner");
 
 // for each method for data array
 
-function displayPhones(data) {
-  console.log(data.length);
+function displayPhones(data, showAll) {
+  // console.log(data.length);
   const showMoreContainer = document.getElementById("show-more-btn-container");
   if (data.length > 10) {
     showMoreContainer.classList.remove("hidden");
   } else {
     showMoreContainer.classList.add("hidden");
   }
-  data = data.slice(0, 10);
-  console.log(data);
+  console.log(showAll, "is show all");
+  // display 10 phones
+  if (!showAll) {
+    data = data.slice(0, 10);
+  } else if (showAll) {
+    data = data.slice(0, data.length);
+  }
+
+  console.log(data, "Array");
   // passing every object to a call back function
   data.forEach(phones);
   loaderFunction(false);
@@ -90,6 +97,7 @@ const phones = (phone) => {
 </div>
   `;
   phoneCardContainer.appendChild(div);
+  // document.getElementById("search-value").value = "";
 };
 
 const loader = document.getElementById("loader");
@@ -100,4 +108,9 @@ const loaderFunction = (state) => {
   } else {
     loader.classList.add("hidden");
   }
+};
+
+// show more
+const showMore = () => {
+  searchItem(true);
 };
