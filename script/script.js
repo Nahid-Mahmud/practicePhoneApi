@@ -44,7 +44,8 @@ const phoneCardContainer = document.getElementById("phone-card-contaner");
 function displayPhones(data, showAll) {
   // console.log(data.length);
   const showMoreContainer = document.getElementById("show-more-btn-container");
-  if (data.length > 10) {
+  // Problem understanding
+  if (data.length > 10 && !showAll) {
     showMoreContainer.classList.remove("hidden");
   } else {
     showMoreContainer.classList.add("hidden");
