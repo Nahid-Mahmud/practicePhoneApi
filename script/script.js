@@ -5,27 +5,47 @@
 // samsung
 // oppo
 
+// gettig value from input field by click handler
+
 const searchItem = () => {
   const phoneBrandText = document.getElementById("search-value").value;
   const phoneBrand = phoneBrandText.toLowerCase();
+
+  // passing this value in fetch api function
   loadPhoneDataFromApi(phoneBrand);
+
+  // reseting input field
   document.getElementById("search-value").value = "";
 };
+
+// Fetch api
+
 const loadPhoneDataFromApi = async (phoneBrandName) => {
   const phoneCardContainer = document.getElementById("phone-card-contaner");
   phoneCardContainer.innerHTML = "";
+
+  // waiting to finish fetch
   const response = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${phoneBrandName}`
   );
+  // converting to json also waiting to finish
   const json = await response.json();
 
-  //   console.log(json.data);
+  //   sending data to another function for proces
   displayPhones(json.data);
 };
+
+// get the parent Container for displaying data
 const phoneCardContainer = document.getElementById("phone-card-contaner");
+
+// for each method for data array
+
 function displayPhones(data) {
+  // passing every object to a call back function
   data.forEach(phones);
 }
+
+// procesessing every object for displaying output  (Function)
 
 const phones = (phone) => {
   const div = document.createElement("div");
