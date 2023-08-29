@@ -9,6 +9,7 @@ const searchItem = () => {
   const phoneBrandText = document.getElementById("search-value").value;
   const phoneBrand = phoneBrandText.toLowerCase();
   loadPhoneDataFromApi(phoneBrand);
+  document.getElementById("search-value").value = "";
 };
 const loadPhoneDataFromApi = async (phoneBrandName) => {
   const phoneCardContainer = document.getElementById("phone-card-contaner");
