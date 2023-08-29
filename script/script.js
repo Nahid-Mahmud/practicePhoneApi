@@ -22,7 +22,7 @@ const phones = (phone) => {
   div.innerHTML = `
 
   <div>
-  <div class="card w-80 bg-base-100 shadow-2xl">
+  <div class="card w-80 md:w-auto lg:w-80 bg-base-100 shadow-2xl">
     <figure class="bg-slate-300 m-5 p-5">
       <img src='${phone.image}' alt="Phone Image"/>
     </figure>
