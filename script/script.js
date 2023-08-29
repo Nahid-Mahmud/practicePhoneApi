@@ -8,6 +8,7 @@
 // gettig value from input field by click handler
 
 const searchItem = () => {
+  loaderFunction(true);
   const phoneBrandText = document.getElementById("search-value").value;
   const phoneBrand = phoneBrandText.toLowerCase();
 
@@ -41,8 +42,18 @@ const phoneCardContainer = document.getElementById("phone-card-contaner");
 // for each method for data array
 
 function displayPhones(data) {
+  console.log(data.length);
+  const showMoreContainer = document.getElementById("show-more-btn-container");
+  if (data.length > 10) {
+    showMoreContainer.classList.remove("hidden");
+  } else {
+    showMoreContainer.classList.add("hidden");
+  }
+  data = data.slice(0, 10);
+  console.log(data);
   // passing every object to a call back function
   data.forEach(phones);
+  loaderFunction(false);
 }
 
 // procesessing every object for displaying output  (Function)
@@ -81,4 +92,12 @@ const phones = (phone) => {
   phoneCardContainer.appendChild(div);
 };
 
-// loadPhoneDataFromApi();
+const loader = document.getElementById("loader");
+
+const loaderFunction = (state) => {
+  if (state) {
+    loader.classList.remove("hidden");
+  } else {
+    loader.classList.add("hidden");
+  }
+};

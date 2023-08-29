@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./photos/icons8-star-filled.gif" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="./photos/icons8-star-filled.gif"
+      type="image/x-icon"
+    />
     <title>Leatest Phones</title>
     <!-- daisyUI   -->
     <link
@@ -39,6 +43,10 @@
           Search Your Phone by Brand Name
         </h1>
         <div class="h-1 bg-gray-600 max-w-[95vw] mx-auto"></div>
+       <!-- spinner  -->
+       <div class="text-center mt-20 hidden" id="loader">
+        <span class="loading loading-spinner loading-lg "></span>
+       </div>
       </section>
       <!-- main api section  -->
       <section class="max-w-[95vw mx-auto] my-5 py-10">
@@ -73,6 +81,13 @@
           </div> -->
         </div>
       </section>
+      <div class="text-center my-7 hidden" id="show-more-btn-container">
+        <button onclick="showMore()"
+          class="bg-red-600 w-40 h-12 font-semibold text-xl text-white rounded-xl hover:bg-blue-600"
+        >
+          Show More
+        </button>
+      </div>
     </main>
     <footer></footer>
     <!-- scripts -->
