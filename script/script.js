@@ -7,30 +7,29 @@ const loadPhoneDataFromApi = async (data) => {
     "https://openapi.programming-hero.com/api/phones?search=iphone"
   );
   const json = await response.json();
+
+  //   console.log(json.data);
   displayPhones(json.data);
 };
-
+const phoneCardContainer = document.getElementById("phone-card-contaner");
 function displayPhones(data) {
-  const phoneCardContainer = document.getElementById("phone-card-contaner");
   data.forEach(phones);
-  return phoneCardContainer;
 }
 
 const phones = (phone) => {
-//   console.log(phone);
   const div = document.createElement("div");
-  console.log(div);
-  div.innerHTML=`
+  //   console.log(div);
+  div.innerHTML = `
 
   <div>
   <div class="card w-96 bg-base-100 shadow-xl">
     <figure class="bg-slate-300 m-5 p-5">
-      <img src="./photos/pngwing 3.png" />
+      <img src='${phone.image}' alt="Phone Image"/>
     </figure>
     <div
       class="card-body flex justify-center items-center text-center"
     >
-      <h2 class="card-title text-2xl font-bold">Shoes!</h2>
+      <h2 class="card-title text-2xl font-bold">${phone.phone_name}</h2>
       <p class="max-w-[18rem] font-normal text-lg">
         If a dog chews shoes whose shoes does he choose?
       </p>
@@ -47,7 +46,8 @@ const phones = (phone) => {
     </div>
   </div>
 </div>
-  `
+  `;
+  phoneCardContainer.appendChild(div);
 };
 
 loadPhoneDataFromApi();
