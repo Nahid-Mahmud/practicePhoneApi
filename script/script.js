@@ -5,14 +5,16 @@
 // samsung
 // oppo
 
-
-
-
-
-
-const loadPhoneDataFromApi = async (data) => {
+const searchItem = () => {
+  const phoneBrandText = document.getElementById("search-value").value;
+  const phoneBrand = phoneBrandText.toLowerCase();
+  loadPhoneDataFromApi(phoneBrand);
+};
+const loadPhoneDataFromApi = async (phoneBrandName) => {
+  const phoneCardContainer = document.getElementById("phone-card-contaner");
+  phoneCardContainer.innerHTML = "";
   const response = await fetch(
-    `https://openapi.programming-hero.com/api/phones?search=${phone}`
+    `https://openapi.programming-hero.com/api/phones?search=${phoneBrandName}`
   );
   const json = await response.json();
 
@@ -58,4 +60,4 @@ const phones = (phone) => {
   phoneCardContainer.appendChild(div);
 };
 
-loadPhoneDataFromApi();
+// loadPhoneDataFromApi();

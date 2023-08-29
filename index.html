@@ -19,11 +19,15 @@
       <section data-theme="dark" class="min-h-[5rem] items-center flex">
         <div class="w-full mx-7 flex justify-end gap-5">
           <input
+            id="search-value"
             type="text"
-            placeholder="Type here"
+            placeholder="Search"
             class="input input-bordered w-full max-w-xs"
+            title="iphone /samsung /oppo"
           />
-          <button class="btn btn-active btn-ghost">Search</button>
+          <button onclick="searchItem()" class="btn btn-active btn-ghost">
+            Search
+          </button>
         </div>
       </section>
     </header>
